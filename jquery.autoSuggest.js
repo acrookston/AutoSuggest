@@ -184,7 +184,10 @@
 						case 9: case 188:  // tab or comma
 							tab_press = true;
 							var i_input = input.val().replace(/(,)/g, "");
-							if(i_input != "" && values_input.val().search(","+i_input+",") < 0 && i_input.length >= opts.minChars){	
+							if(opts.selectionLimit && $("li.as-selection-item", selections_holder).length >= opts.selectionLimit){
+								results_ul.html('<li class="as-message">'+opts.limitText+'</li>');
+								results_holder.show();
+							} else if(i_input != "" && values_input.val().search(","+i_input+",") < 0 && i_input.length >= opts.minChars){
 								e.preventDefault();
 								var n_data = {};
 								n_data[opts.selectedItemProp] = i_input;

@@ -49,8 +49,8 @@
 		  	retrieveComplete: function(data){ return data; },
 		  	resultClick: function(data){},
 		  	resultsComplete: function(){}
-	  	};  
-	 	var opts = $.extend(defaults, options);	 	
+	  	};
+	 	var opts = $.extend(defaults, options);
 		
 		var d_type = "object";
 		var d_count = 0;
@@ -188,7 +188,7 @@
 								e.preventDefault();
 								var n_data = {};
 								n_data[opts.selectedItemProp] = i_input;
-								n_data[opts.selectedValuesProp] = i_input;																				
+								n_data[opts.selectedValuesProp] = i_input;
 								var lis = $("li", selections_holder).length;
 								add_selected_item(n_data, "00"+(lis+1));
 								input.val("");
@@ -250,7 +250,7 @@
 						selections_holder.removeClass("loading");
 						results_holder.hide();
 					}
-				}
+				};
 				var num_count = 0;
 				function processData(data, query){
 					if (!opts.matchCase){ query = query.toLowerCase(); }
@@ -321,7 +321,7 @@
 					results_ul.css("width", selections_holder.outerWidth());
 					results_holder.show();
 					opts.resultsComplete.call(this);
-				}
+				};
 				
 				function add_selected_item(data, num){
 					values_input.val(values_input.val()+data[opts.selectedValuesProp]+",");
@@ -339,7 +339,7 @@
 						});
 					org_li.before(item.html(data[opts.selectedItemProp]).prepend(close));
 					opts.selectionAdded.call(this, org_li.prev());	
-				}
+				};
 				
 				function moveSelection(direction){
 					if($(":visible",results_holder).length > 0){
@@ -360,9 +360,8 @@
 						lis.removeClass("active");
 						start.addClass("active");
 					}
-				}
-									
+				};
 			});
 		}
-	}
-})(jQuery);  	
+	};
+})(jQuery);

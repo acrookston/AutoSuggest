@@ -45,6 +45,7 @@
 			selectionLimit: false,
 			showResultList: true,
 			customOptions: true,
+			originalPostName: true,
 			noCustomOptionsText: "No Custom Options Allowed",
 		  	start: function(){},
 		  	selectionClick: function(elem){},
@@ -80,6 +81,11 @@
 				var input = $(this);
 				input.attr("autocomplete","off").addClass("as-input").attr("id",x_id).val(opts.startText);
 				var input_focus = false;
+				var input_name = 'as_values_' + x;
+				if (opts.originalPostName) {
+					input_name = input.attr('name');
+					input.removeAttr('name');
+				}
 				
 				// Setup basic elements and render them to the DOM
 				input.wrap('<ul class="as-selections" id="as-selections-'+x+'"></ul>').wrap('<li class="as-original" id="as-original-'+x+'"></li>');
@@ -87,7 +93,7 @@
 				var org_li = $("#as-original-"+x);				
 				var results_holder = $('<div class="as-results" id="as-results-'+x+'"></div>').hide();
 				var results_ul =  $('<ul class="as-list"></ul>');
-				var values_input = $('<input type="hidden" class="as-values" name="as_values_'+x+'" id="as-values-'+x+'" />');
+				var values_input = $('<input type="hidden" class="as-values" name="'+input_name+'" id="as-values-'+x+'" />');
 				var prefill_value = "";
 				if(typeof opts.preFill == "string"){
 					var vals = opts.preFill.split(",");					
